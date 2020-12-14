@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/notepadFragment">
+    <fragment
+        android:id="@+id/notepadFragment"
+        android:name="com.example.madlevel5task1.NotepadFragment"
+        android:label="notepad_fragment"
+        tools:layout="@layout/notepad_fragment" >
+        <action
+            android:id="@+id/action_notepadFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.madlevel5task1.AddNoteFragment"
+        android:label="add_note_fragment"
+        tools:layout="@layout/add_note_fragment" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_notepadFragment"
+            app:destination="@id/notepadFragment" />
+    </fragment>
+</navigation>
