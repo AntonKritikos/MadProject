@@ -1,4 +1,4 @@
-package com.example.madproject
+package com.example.madproject.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

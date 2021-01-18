@@ -1,8 +1,11 @@
-package com.example.madproject
+package com.example.madproject.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.madproject.model.Character
+import com.example.madproject.repository.CharacterRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,6 +43,10 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
                 success.value = true
             }
         }
+    }
+
+    fun updateCharacter(char: Character) {
+        updateCharacter(char.name,char.c_class,char.c_level,char.c_race,char.stats)
     }
 
     private fun isCharacterValid(character: Character): Boolean {

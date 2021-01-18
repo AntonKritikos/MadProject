@@ -6,7 +6,7 @@
     app:startDestination="@id/characterFragment">
     <fragment
         android:id="@+id/addCharacterFragment"
-        android:name="com.example.madproject.AddCharacterFragment"
+        android:name="com.example.madproject.ui.AddCharacterFragment"
         android:label="AddCharacterFragment" >
         <action
             android:id="@+id/action_addCharacterFragment_to_characterFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterFragment"
-        android:name="com.example.madproject.CharacterFragment"
+        android:name="com.example.madproject.ui.CharacterFragment"
         android:label="char_overview_fragment"
         tools:layout="@layout/char_overview_fragment" >
         <action

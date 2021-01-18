@@ -1,7 +1,6 @@
-package com.example.madproject
+package com.example.madproject.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.madlevel5task1.R
+import com.example.madproject.model.Character
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.add_character_fragment.*
 
 class AddCharacterFragment : Fragment() {
@@ -29,7 +30,7 @@ class AddCharacterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnSave.setOnClickListener {
-            saveNote()
+            saveCharacter()
         }
 
         observeNote()
@@ -38,8 +39,8 @@ class AddCharacterFragment : Fragment() {
     private fun observeNote() {
 //fill the text fields with the current text and title from the viewmodel
         viewModel.character.observe(viewLifecycleOwner, Observer {
-                note  ->
-            note?.let {
+                character  ->
+            character?.let {
                 char_name.editText?.setText(it.name)
                 char_class.editText?.setText(it.c_class)
                 char_level.editText?.setText(it.c_level.toString())
@@ -66,9 +67,11 @@ class AddCharacterFragment : Fragment() {
         })
     }
 
-    private fun saveNote() {
+    private fun saveCharacter() {
 
-        val stats = ArrayList<Int>(6);
+        val stats = ArrayList<Int>(6)
+        val backup = viewModel.character.value!!
+
         stats.add(strength.text.toString().toInt());
         stats.add(dexterity.text.toString().toInt());
         stats.add(constitution.text.toString().toInt());
@@ -82,6 +85,12 @@ class AddCharacterFragment : Fragment() {
             char_level.editText?.text.toString().toInt(),
             char_race.editText?.text.toString(),
             stats)
+
+        Snackbar.make(
+            add_char_layout,
+            getString(R.string.changed_character),
+            Snackbar.LENGTH_LONG
+        ).setAction(R.string.undo){viewModel.updateCharacter(backup)}.show()
     }
 
 }

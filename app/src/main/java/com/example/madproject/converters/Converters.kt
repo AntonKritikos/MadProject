@@ -1,9 +1,8 @@
-package com.example.madproject
+package com.example.madproject.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.json.JSONArray
 import java.util.*
 import kotlin.collections.ArrayList
 

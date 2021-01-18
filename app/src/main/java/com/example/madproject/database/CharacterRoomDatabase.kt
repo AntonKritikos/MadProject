@@ -1,4 +1,4 @@
-package com.example.madproject
+package com.example.madproject.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,6 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.madproject.model.Character
+import com.example.madproject.converters.Converters
+import com.example.madproject.dao.CharacterDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,8 +47,10 @@ abstract class CharacterRoomDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
-                                            database.characterDao().insertCharacter(Character("Tim","Fighter",1,"Human",
-                                                stats,Date()))
+                                            database.characterDao().insertCharacter(
+                                                Character("Tim","Fighter",1,"Human",
+                                                stats,Date())
+                                            )
                                         }
                                     }
                                 }

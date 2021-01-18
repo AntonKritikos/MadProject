@@ -26,5 +26,7 @@
     <string name="placeholder_intelligence">Intelligence</string>
     <string name="placeholder_wisdom">Wisdom</string>
     <string name="placeholder_charisma">Charisma</string>
+    <string name="changed_character">Your character has successfully been updated</string>
+    <string name="undo">undo</string>
 
 </resources>

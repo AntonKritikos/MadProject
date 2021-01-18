@@ -1,7 +1,10 @@
-package com.example.madproject
+package com.example.madproject.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.example.madproject.model.Character
+import com.example.madproject.database.CharacterRoomDatabase
+import com.example.madproject.dao.CharacterDao
 
 class CharacterRepository(context: Context) {
     private val characterDao: CharacterDao
