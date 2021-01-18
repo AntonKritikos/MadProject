@@ -33,10 +33,10 @@ class AddCharacterFragment : Fragment() {
             saveCharacter()
         }
 
-        observeNote()
+        observeCharacter()
     }
 
-    private fun observeNote() {
+    private fun observeCharacter() {
 //fill the text fields with the current text and title from the viewmodel
         viewModel.character.observe(viewLifecycleOwner, Observer {
                 character  ->

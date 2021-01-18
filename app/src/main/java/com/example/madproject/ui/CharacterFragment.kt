@@ -33,8 +33,8 @@ class CharacterFragment : Fragment() {
     }
 
     private fun observeAddCharacterResult() {
-        viewModel.character.observe(viewLifecycleOwner, Observer{ note ->
-            note?.let {
+        viewModel.character.observe(viewLifecycleOwner, Observer{ character ->
+            character?.let {
                 name.text = it.name
                 tvLastUpdated.text = getString(R.string.last_updated, it.lastUpdated.toString())
                 _class.text = it.c_class
