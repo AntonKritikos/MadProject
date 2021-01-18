@@ -29,10 +29,10 @@ class CharacterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState:     Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeAddNoteResult()
+        observeAddCharacterResult()
     }
 
-    private fun observeAddNoteResult() {
+    private fun observeAddCharacterResult() {
         viewModel.character.observe(viewLifecycleOwner, Observer{ note ->
             note?.let {
                 name.text = it.name
@@ -57,6 +57,7 @@ class CharacterFragment : Fragment() {
     }
 
     private fun calcModifier(num: Int): String {
+        // Calculating the stat into the player's modifier, to do this remove 10 and divide by 2, resulting number is the modifier
         val mod = ((num - BASELINE)/2);
         if (mod >= 0) {
             return "+$mod";

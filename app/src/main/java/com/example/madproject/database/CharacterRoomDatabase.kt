@@ -23,6 +23,8 @@ abstract class CharacterRoomDatabase : RoomDatabase() {
 
     companion object {
         private const val DATABASE_NAME = "CHARACTER_DATABASE"
+        val stat_count = 6
+        val base_stat_number = 8
 
         @Volatile
         private var INSTANCE: CharacterRoomDatabase? = null
@@ -39,14 +41,15 @@ abstract class CharacterRoomDatabase : RoomDatabase() {
                             .fallbackToDestructiveMigration()
                             .addCallback(object : RoomDatabase.Callback() {
                                 override fun onCreate(db: SupportSQLiteDatabase) {
-                                    val stats = ArrayList<Int>(6)
-                                    for (i in 0..5) {
-                                        stats.add(10)
+                                    val stats = ArrayList<Int>(stat_count)
+                                    for (i in 1..stat_count) {
+                                        stats.add(base_stat_number)
                                     }
 
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
+                                            //create a character if none exists
                                             database.characterDao().insertCharacter(
                                                 Character("Tim","Fighter",1,"Human",
                                                 stats,Date())

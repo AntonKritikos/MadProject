@@ -10,13 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.madlevel5task1.R
-import com.example.madproject.model.Character
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.add_character_fragment.*
 
 class AddCharacterFragment : Fragment() {
 
     private val viewModel: CharacterViewModel by viewModels()
+    val stat_count = 6
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +45,7 @@ class AddCharacterFragment : Fragment() {
                 char_class.editText?.setText(it.c_class)
                 char_level.editText?.setText(it.c_level.toString())
                 char_race.editText?.setText(it.c_race)
-                if (it.stats.size == 6) {
+                if (it.stats.size == stat_count) {
                     strength.setText(it.stats[0].toString())
                     dexterity.setText(it.stats[1].toString())
                     constitution.setText(it.stats[2].toString())
@@ -62,14 +62,13 @@ class AddCharacterFragment : Fragment() {
         })
 
         viewModel.success.observe(viewLifecycleOwner, Observer {     success ->
-            //"pop" the backstack, this means we destroy this    fragment and go back to the RemindersFragment
             findNavController().popBackStack()
         })
     }
 
     private fun saveCharacter() {
 
-        val stats = ArrayList<Int>(6)
+        val stats = ArrayList<Int>(stat_count)
         val backup = viewModel.character.value!!
 
         stats.add(strength.text.toString().toInt());
@@ -86,6 +85,7 @@ class AddCharacterFragment : Fragment() {
             char_race.editText?.text.toString(),
             stats)
 
+        //snackbar for notifying and option to undo changes
         Snackbar.make(
             add_char_layout,
             getString(R.string.changed_character),

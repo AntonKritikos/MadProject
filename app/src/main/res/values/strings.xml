@@ -28,5 +28,6 @@
     <string name="placeholder_charisma">Charisma</string>
     <string name="changed_character">Your character has successfully been updated</string>
     <string name="undo">undo</string>
+    <string name="stat_error">A character\'s stats cannot be above 20 or below 1</string>
 
 </resources>

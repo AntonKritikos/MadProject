@@ -22,6 +22,8 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
     val character = characterRepository.getCharacter()
     val error = MutableLiveData<String>()
     val success = MutableLiveData<Boolean>()
+    val max_level = 20
+    val min_level = 1
 
     fun updateCharacter(name: String, c_class: String, c_level: Int, c_race: String, stats: ArrayList<Int>) {
 
@@ -45,6 +47,7 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    //function is to allow for the updating of a character via an existing Character
     fun updateCharacter(char: Character) {
         updateCharacter(char.name,char.c_class,char.c_level,char.c_race,char.stats)
     }
@@ -58,7 +61,7 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
             character.stats.isNotEmpty() -> {
                 var state = true
                 for (i in 1..character.stats.size) {
-                    if (character.stats[i-1] > 20 || character.stats[i-1] < 1) {
+                    if (character.stats[i-1] > max_level || character.stats[i-1] < min_level) {
                         error.value = "A character's stats cannot be above 20 or below 1"
                         state = false
                     }
@@ -66,7 +69,7 @@ class CharacterViewModel(application: Application) : AndroidViewModel(applicatio
                 return state
             }
             character.c_level.toString().isNotEmpty() -> {
-                if (character.c_level > 20 || character.c_level < 1) {
+                if (character.c_level > max_level || character.c_level < min_level) {
                         error.value = "A character's level cannot be above 20 or below 1"
                     return false
                 }

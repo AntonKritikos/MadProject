@@ -14,9 +14,11 @@ class Converters {
 
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? {
-        return date?.time?.toLong()
+        return date?.time
     }
 
+
+    // in order to store an array in a ROOM database conversion in needed to turn an array into a JSON string which then gets reverted back to an ArrayList
     @TypeConverter
     fun arrayToString(array: ArrayList<Int>): String? {
         return Gson().toJson(array)
