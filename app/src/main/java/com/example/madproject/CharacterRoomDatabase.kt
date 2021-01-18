@@ -1,4 +1,4 @@
-package com.example.madlevel5task1
+package com.example.madproject
 
 import android.content.Context
 import androidx.room.Database
@@ -10,34 +10,42 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+@Database(entities = [Character::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
-abstract class NoteRoomDatabase : RoomDatabase() {
+abstract class CharacterRoomDatabase : RoomDatabase() {
 
-    abstract fun noteDao(): NoteDao
+    abstract fun characterDao(): CharacterDao
 
     companion object {
-        private const val DATABASE_NAME = "NOTEPAD_DATABASE"
+        private const val DATABASE_NAME = "CHARACTER_DATABASE"
 
         @Volatile
-        private var INSTANCE: NoteRoomDatabase? = null
+        private var INSTANCE: CharacterRoomDatabase? = null
 
-        fun getDatabase(context: Context): NoteRoomDatabase? {
+        fun getDatabase(context: Context): CharacterRoomDatabase? {
             if (INSTANCE == null) {
-                synchronized(NoteRoomDatabase::class.java) {
+                synchronized(CharacterRoomDatabase::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
-                            NoteRoomDatabase::class.java, DATABASE_NAME
+                            CharacterRoomDatabase::class.java,
+                            DATABASE_NAME
                         )
                             .fallbackToDestructiveMigration()
                             .addCallback(object : RoomDatabase.Callback() {
                                 override fun onCreate(db: SupportSQLiteDatabase) {
+                                    val stats = ArrayList<Int>(6)
+                                    for (i in 0..5) {
+                                        stats.add(10)
+                                    }
+
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
-                                            database.noteDao().insertNote(Note("Title", Date(), ""))
+                                            database.characterDao().insertCharacter(Character("Tim","Fighter",1,"Human",
+                                                stats,Date()))
                                         }
                                     }
                                 }
@@ -50,5 +58,4 @@ abstract class NoteRoomDatabase : RoomDatabase() {
             return INSTANCE
         }
     }
-
 }

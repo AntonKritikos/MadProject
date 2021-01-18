@@ -1,4 +1,4 @@
-package com.example.madlevel5task1
+package com.example.madproject
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.madlevel5task1.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             navController.navigate(
-                R.id.action_notepadFragment_to_addNoteFragment
+                R.id.action_characterFragment_to_addCharacterFragment
             )
         }
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fabToggler() {
         navController.addOnDestinationChangedListener { _,       destination, _ ->
-            if (destination.id in arrayOf(R.id.addNoteFragment)) {
+            if (destination.id in arrayOf(R.id.addCharacterFragment)) {
                 fab.hide()
             } else {
                 fab.show()

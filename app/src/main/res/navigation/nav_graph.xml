@@ -3,23 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/notepadFragment">
+    app:startDestination="@id/characterFragment">
     <fragment
-        android:id="@+id/notepadFragment"
-        android:name="com.example.madlevel5task1.NotepadFragment"
-        android:label="notepad_fragment"
-        tools:layout="@layout/notepad_fragment" >
+        android:id="@+id/addCharacterFragment"
+        android:name="com.example.madproject.AddCharacterFragment"
+        android:label="AddCharacterFragment" >
         <action
-            android:id="@+id/action_notepadFragment_to_addNoteFragment"
-            app:destination="@id/addNoteFragment" />
+            android:id="@+id/action_addCharacterFragment_to_characterFragment"
+            app:destination="@id/characterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addNoteFragment"
-        android:name="com.example.madlevel5task1.AddNoteFragment"
-        android:label="add_note_fragment"
-        tools:layout="@layout/add_note_fragment" >
+        android:id="@+id/characterFragment"
+        android:name="com.example.madproject.CharacterFragment"
+        android:label="char_overview_fragment"
+        tools:layout="@layout/char_overview_fragment" >
         <action
-            android:id="@+id/action_addNoteFragment_to_notepadFragment"
-            app:destination="@id/notepadFragment" />
+            android:id="@+id/action_characterFragment_to_addCharacterFragment"
+            app:destination="@id/addCharacterFragment" />
     </fragment>
 </navigation>
